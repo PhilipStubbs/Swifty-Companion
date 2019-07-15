@@ -1,0 +1,13 @@
+
+https://api.intra.42.fr/v2/users/:user_id/cursus_users 					//grabs user profile info
+https://api.intra.42.fr/v2/users/:user_id/projects_users 				//grabs projects completed by a user
+
+34278
+
+
+https://api.intra.42.fr/oauth/token
+{
+	"grant_type":"client_credentials",
+	"client_id": "" ,
+	"client_secret":""
+}
