@@ -11,3 +11,7 @@ https://api.intra.42.fr/oauth/token
 	"client_id": "" ,
 	"client_secret":""
 }
+
+
+
+https://www.youtube.com/watch?v=4RyhnwIRjpA  7:09
