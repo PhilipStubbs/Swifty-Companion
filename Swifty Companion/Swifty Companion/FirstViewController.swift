@@ -12,6 +12,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
  
     var studentArray = [Student]()
     var currentStudentArray = [Student]()
+    var selectedStudent: Student = Student(name:"", campus:"",image: UIImage(named: "default")!)
     let file = "students.txt"
     
     @IBOutlet var table: UITableView!
@@ -28,12 +29,11 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
             let myStrings = (data?.components(separatedBy: .newlines))!
             
             for name in myStrings {
-                studentArray.append(Student(name:name.lowercased(), campus:"WeThinkCode_", image:"default"))
+                studentArray.append(Student(name:name.lowercased(), campus:"WeThinkCode_", image: UIImage(named: "default")!))
             }
         } else {
             print("Students Not Found")
         }
-        
         currentStudentArray = studentArray
     }
     
@@ -43,6 +43,20 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentStudentArray.count
+    }
+    
+    // get selected Student
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (!(selectedStudent === studentArray[indexPath.row]))  {
+            selectedStudent = studentArray[indexPath.row]
+            print(studentArray[indexPath.row].name)
+//            var profilePicture = studentArray[indexPath.row]
+            
+//            detailedStudent = DetailedStudent(name: name, campus: campus, profilePicture: profilePicture)
+            let detailedStudentFromFirst = DetailedStudent(name: selectedStudent.name, campus: selectedStudent.campus, profilePicture: selectedStudent.image)
+            print(detailedStudentFromFirst.email)
+//            SecondViewController.makeSecondView(detailedStudent: detailedStudentFromFirst)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,14 +70,10 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
             let data = try Data(contentsOf: url)
             cell.intraProfilePicture.image = UIImage(data: data)
         } catch {
-            cell.intraProfilePicture.image = UIImage(named: currentStudentArray[indexPath.row].image)
+            cell.intraProfilePicture.image = UIImage(named: "default")
         }
    
         return cell
-    }
-    
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
     
@@ -91,12 +101,18 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
 class Student {
     let name: String
     let campus: String
-    let image: String
+    let image: UIImage
     
-    init(name: String, campus:String, image:String){
+    init(name: String, campus:String, image:UIImage){
         self.name = name
         self.campus = campus
         self.image = image
+    }
+    
+    init(){
+        self.name = ""
+        self.campus = ""
+        self.image = UIImage(named: "default")!
     }
 }
 

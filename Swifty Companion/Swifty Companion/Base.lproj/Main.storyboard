@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HuI-7K-fDj">
+                            <tableView clipsSubviews="YES" contentMode="center" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HuI-7K-fDj">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" text="" showsScopeBar="YES" id="OBL-Bz-8hG">
@@ -163,6 +163,14 @@
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="campus" destination="iH5-Xk-iNV" id="UpA-Ey-xvo"/>
+                        <outlet property="level" destination="iXj-j1-wnl" id="krd-id-mPW"/>
+                        <outlet property="profilePicture" destination="gq5-Ui-GMb" id="4wk-3z-YZz"/>
+                        <outlet property="projectTable" destination="nTI-Xq-SmM" id="SlI-7F-geu"/>
+                        <outlet property="userEmail" destination="X4H-rJ-zOS" id="Gli-OD-MoK"/>
+                        <outlet property="userName" destination="f9Y-Mw-B92" id="1DY-Jp-jxL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>

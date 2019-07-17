@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D9902E622DF252B00A79145 /* DetailedStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9902E522DF252A00A79145 /* DetailedStudent.swift */; };
 		9DE3080B22DDBCAA001A8337 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE3080A22DDBCAA001A8337 /* AppDelegate.swift */; };
 		9DE3080D22DDBCAA001A8337 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE3080C22DDBCAA001A8337 /* FirstViewController.swift */; };
 		9DE3080F22DDBCAA001A8337 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE3080E22DDBCAA001A8337 /* SecondViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D9902E522DF252A00A79145 /* DetailedStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedStudent.swift; sourceTree = "<group>"; };
 		9DE3080722DDBCAA001A8337 /* Swifty Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swifty Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE3080A22DDBCAA001A8337 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DE3080C22DDBCAA001A8337 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				9DE3081322DDBCC4001A8337 /* Assets.xcassets */,
 				9DE3081522DDBCC4001A8337 /* LaunchScreen.storyboard */,
 				9DE3081822DDBCC4001A8337 /* Info.plist */,
+				9D9902E522DF252A00A79145 /* DetailedStudent.swift */,
 			);
 			path = "Swifty Companion";
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DE3080F22DDBCAA001A8337 /* SecondViewController.swift in Sources */,
+				9D9902E622DF252B00A79145 /* DetailedStudent.swift in Sources */,
 				9DE3080B22DDBCAA001A8337 /* AppDelegate.swift in Sources */,
 				9DE3083B22DDC99C001A8337 /* TableCell.swift in Sources */,
 				9DE3080D22DDBCAA001A8337 /* FirstViewController.swift in Sources */,

@@ -8,13 +8,29 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
 
+class SecondViewController: UIViewController {
+    
+    var detailedStudent: DetailedStudent = DetailedStudent();
+    
+    @IBOutlet var profilePicture: UIImageView!
+    @IBOutlet var userName: UILabel!
+    @IBOutlet var userEmail: UILabel!
+    @IBOutlet var campus: UILabel!
+    @IBOutlet var level: UILabel!
+    @IBOutlet var projectTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
+    
+    static func makeSecondView(detailedStudent: DetailedStudent) -> SecondViewController {
+        let newViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "IdentifierOfYouViewController") as! SecondViewController
+        
+        newViewController.detailedStudent = detailedStudent
+        
+        return newViewController
+    }
 }
 
