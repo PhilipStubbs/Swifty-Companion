@@ -99,6 +99,7 @@
                         <outlet property="searchBar" destination="OBL-Bz-8hG" id="RWu-wi-7bv"/>
                         <outlet property="searchDisplayController" destination="MEB-Ej-eCe" id="IaV-b2-PCw"/>
                         <outlet property="table" destination="HuI-7K-fDj" id="4mU-qQ-Uvk"/>
+                        <segue destination="8rJ-Kc-sve" kind="show" identifier="displayDetailedUser" id="aEj-4T-Y8t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -111,7 +112,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="749.27536231884062" y="-320.08928571428572"/>
+            <point key="canvasLocation" x="896" y="-337"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
@@ -162,7 +163,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Second" image="second" id="TTH-Mf-S1H"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="campus" destination="iH5-Xk-iNV" id="UpA-Ey-xvo"/>
                         <outlet property="level" destination="iXj-j1-wnl" id="krd-id-mPW"/>
@@ -174,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.27536231884062" y="359.59821428571428"/>
+            <point key="canvasLocation" x="896" y="445"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -199,4 +201,7 @@
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="aEj-4T-Y8t"/>
+    </inferredMetricsTieBreakers>
 </document>

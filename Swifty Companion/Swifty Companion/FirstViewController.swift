@@ -13,6 +13,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     var studentArray = [Student]()
     var currentStudentArray = [Student]()
     var selectedStudent: Student = Student(name:"", campus:"",image: UIImage(named: "default")!)
+    var currentDetailedStudent = DetailedStudent(name:"n", campus:"c",profilePicture: UIImage(named: "default")!);
     let file = "students.txt"
     
     @IBOutlet var table: UITableView!
@@ -53,12 +54,21 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
 //            var profilePicture = studentArray[indexPath.row]
             
 //            detailedStudent = DetailedStudent(name: name, campus: campus, profilePicture: profilePicture)
-            let detailedStudentFromSelected = DetailedStudent(name: selectedStudent.name, campus: selectedStudent.campus, profilePicture: selectedStudent.image)
-            print(detailedStudentFromSelected.email)
-            MyVariables.currentDetailedStudent = detailedStudentFromSelected
+            self.currentDetailedStudent = DetailedStudent(name: selectedStudent.name, campus: selectedStudent.campus, profilePicture: selectedStudent.image)
+            print(currentDetailedStudent.email)
+            
+            performSegue(withIdentifier: "displayDetailedUser", sender: self)
             
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var vc = segue.destination as! SecondViewController
+        print("look at this"+currentDetailedStudent.campus)
+        vc.detailedStudent = currentDetailedStudent
+
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? TableCell else {
