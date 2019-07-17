@@ -24,7 +24,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         setUpSearchBar()
     }
     
-    private func setUpStudents(){
+    private func setUpStudents() {
         if let asset = NSDataAsset(name: "Data") {
             let data = String(data: asset.data, encoding: .utf8)
             let myStrings = (data?.components(separatedBy: .newlines))!
@@ -48,15 +48,12 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     // get selected Student
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (!(selectedStudent === studentArray[indexPath.row]))  {
-            selectedStudent = studentArray[indexPath.row]
-            print(studentArray[indexPath.row].name)
-//            var profilePicture = studentArray[indexPath.row]
-            
-//            detailedStudent = DetailedStudent(name: name, campus: campus, profilePicture: profilePicture)
+        if (!(selectedStudent === currentStudentArray[indexPath.row]))  {
+            selectedStudent = currentStudentArray[indexPath.row]
+            print(currentStudentArray[indexPath.row].name)
+
             self.currentDetailedStudent = DetailedStudent(name: selectedStudent.name, campus: selectedStudent.campus, profilePicture: selectedStudent.image)
-            print(currentDetailedStudent.email)
-            
+
             performSegue(withIdentifier: "displayDetailedUser", sender: self)
             
         }
@@ -64,9 +61,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var vc = segue.destination as! SecondViewController
-        print("look at this"+currentDetailedStudent.campus)
         vc.detailedStudent = currentDetailedStudent
-
     }
     
     

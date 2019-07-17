@@ -22,14 +22,23 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        userName.text = detailedStudent.name
         userEmail.text = detailedStudent.email
-        profilePicture.image = detailedStudent.profilePicture
         campus.text = detailedStudent.campus
+        setProfilePicture()
+       
     }
     
 
-    
+    func setProfilePicture() {
+        let url = URL(string: "https://cdn.intra.42.fr/users/medium_"+detailedStudent.name+".png")!
+        do {
+            let data = try Data(contentsOf: url)
+            profilePicture.image = UIImage(data: data)
+        } catch {
+            profilePicture.image = UIImage(named: "default")
+        }
+    }
 
     
   
