@@ -59,13 +59,6 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.intraProfilePicture.image = UIImage(named: currentStudentArray[indexPath.row].image)
         }
    
-//        downloadImage(from: url, cell: cell)
-    
-         //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-//        cell.intraProfilePicture.image = UIImage(data: data!)
-        
-//        cell.intraProfilePicture.image = UIImage(named: currentStudentArray[indexPath.row].image)
-        
         return cell
     }
     
@@ -73,17 +66,6 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
-    func downloadImage(from url: URL, cell :TableCell) {
-        print("Download Started")
-        getData(from: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            DispatchQueue.main.async() {
-                cell.intraProfilePicture.image = UIImage(data: data)
-            }
-        }
-    }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
