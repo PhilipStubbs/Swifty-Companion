@@ -22,15 +22,30 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewWillAppear(true);
         // Do any additional setup after loading the view.
     }
     
-    static func makeSecondView(detailedStudent: DetailedStudent) -> SecondViewController {
-        let newViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "IdentifierOfYouViewController") as! SecondViewController
-        
-        newViewController.detailedStudent = detailedStudent
-        
-        return newViewController
-    }
+    override func viewWillAppear(_ animated: Bool) {
+        func run() {
+                userName.text = MyVariables.currentDetailedStudent.name
+                profilePicture.image = MyVariables.currentDetailedStudent.profilePicture
+            print("name:"+MyVariables.currentDetailedStudent.name)
+            }
+        }
+    
+//    func loadData() {
+//        // code to load data from network, and refresh the interface
+//        tableView.reloadData()
+//    }
+//    static func makeSecondView(detailedStudent: DetailedStudent) -> SecondViewController {
+//        let newViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "IdentifierOfYouViewController") as! SecondViewController
+//
+//        newViewController.detailedStudent = detailedStudent
+//
+//        return newViewController
+//    }
+  
 }
+
 

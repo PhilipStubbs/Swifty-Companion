@@ -53,9 +53,10 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
 //            var profilePicture = studentArray[indexPath.row]
             
 //            detailedStudent = DetailedStudent(name: name, campus: campus, profilePicture: profilePicture)
-            let detailedStudentFromFirst = DetailedStudent(name: selectedStudent.name, campus: selectedStudent.campus, profilePicture: selectedStudent.image)
-            print(detailedStudentFromFirst.email)
-//            SecondViewController.makeSecondView(detailedStudent: detailedStudentFromFirst)
+            let detailedStudentFromSelected = DetailedStudent(name: selectedStudent.name, campus: selectedStudent.campus, profilePicture: selectedStudent.image)
+            print(detailedStudentFromSelected.email)
+            MyVariables.currentDetailedStudent = detailedStudentFromSelected
+            
         }
     }
     

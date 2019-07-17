@@ -8,6 +8,10 @@
 
 import UIKit
 
+struct MyVariables {
+    static var currentDetailedStudent = DetailedStudent()
+}
+
 class DetailedStudent {
     let name: String
     let email: String
