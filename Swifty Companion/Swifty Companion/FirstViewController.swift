@@ -51,10 +51,40 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         cell.name.text = currentStudentArray[indexPath.row].name
         cell.campus.text = currentStudentArray[indexPath.row].campus
-        cell.intraProfilePicture.image = UIImage(named: currentStudentArray[indexPath.row].image)
+        let url = URL(string: "https://cdn.intra.42.fr/users/medium_"+currentStudentArray[indexPath.row].name+".png")!
+        do {
+            let data = try Data(contentsOf: url)
+            cell.intraProfilePicture.image = UIImage(data: data)
+        } catch {
+            cell.intraProfilePicture.image = UIImage(named: currentStudentArray[indexPath.row].image)
+        }
+   
+//        downloadImage(from: url, cell: cell)
+    
+         //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+//        cell.intraProfilePicture.image = UIImage(data: data!)
+        
+//        cell.intraProfilePicture.image = UIImage(named: currentStudentArray[indexPath.row].image)
         
         return cell
     }
+    
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    func downloadImage(from url: URL, cell :TableCell) {
+        print("Download Started")
+        getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() {
+                cell.intraProfilePicture.image = UIImage(data: data)
+            }
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
