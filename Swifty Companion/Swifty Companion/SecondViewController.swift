@@ -24,6 +24,7 @@ class SecondViewController: UIViewController {
     @IBOutlet var campus: UILabel!
     @IBOutlet var level: UILabel!
     @IBOutlet var projectTable: UITableView!
+    @IBOutlet var signupTime: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,8 +84,10 @@ class SecondViewController: UIViewController {
             if let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [Dictionary<String,Any>] {
                 print(jsonData)
                 var level = 0.0;
+                var begin_at = "";
                 if var wtc = try jsonData[0] as? [String: Any] {
                     // WTC data.. most of the time.
+                    begin_at = (wtc["begin_at"] as? String)!
                     level = wtc["level"] as? Double ?? 0.0
                 }
                 if (jsonData.count > 1) {
@@ -100,7 +103,7 @@ class SecondViewController: UIViewController {
                 DispatchQueue.global().async(execute: {
                     DispatchQueue.main.async {
                         self.level.text = String(format:"%.2f",level)
-                        // etc
+                        self.signupTime.text = begin_at
                     }
                 })
                 
