@@ -59,26 +59,17 @@ class SecondViewController: UIViewController {
                         self.getUserInfo()
                     }
                 }
-                if let data = rawData, let dataString = String(data: data, encoding: .utf8) {
-//                    jsonResponse = dataString
-//                    print(jsonResponse)
-//                    self.setUserInfo(data: dataString)
-//                    print("data: \(dataString)")
-                     print(dataString)
-                    
-                    do{
-                        if let json = dataString.data(using: String.Encoding.utf8){
-                            if let jsonData = try JSONSerialization.jsonObject(with: json, options: .allowFragments) as? [String:AnyObject]{
-                                print(jsonData["level"] as! String)
-                                self.level.text = jsonData["level"] as! String
-                                
-                            }
-                        }
-                    }catch {
-                        print(error.localizedDescription)
-                        
-                    }
-                }
+                self.setUserInfo(data: rawData!)
+//                if let data = rawData, let dataString = String(data: data, encoding: .utf8) {
+////                    jsonResponse = dataString
+////                    print(jsonResponse)
+////                    self.setUserInfo(data: dataString)
+////                    print("data: \(dataString)")
+//                     print(dataString)
+//                }
+                
+
+//                }
           
             }
         }
@@ -87,26 +78,40 @@ class SecondViewController: UIViewController {
     }
     
     func setUserInfo(data: Data){
-        print("inside setUser")
-        
-        let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-//        print(json!["level"])
-//        DispatchQueue.global().async(execute: {
-//            DispatchQueue.main.async {
-//                self.level.text = json!["level"]
-//                // etc
-//            }
-//        })
-//        do {
-//            if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-//
-        
-//            } else {
-//                print("Json not created")
-//            }
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
+        do{
+            //                        if let json = dataString.data(using: String.Encoding.utf8){
+            if let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [Dictionary<String,Any>] {
+                print(jsonData)
+                var level = 0.0;
+                if var wtc = try jsonData[0] as? [String: Any] {
+                    // WTC data.. most of the time.
+                    level = wtc["level"] as? Double ?? 0.0
+                }
+                if (jsonData.count > 1) {
+                    if var bootcamp = try jsonData[1] as? [String: Any] {
+                        // BOOTCAMP data.. most of the time
+                        print(bootcamp["level"])
+                        if (level == 0.0){
+                            level = bootcamp["level"] as? Double ?? 0.0
+                        }
+                    }
+                }
+
+                DispatchQueue.global().async(execute: {
+                    DispatchQueue.main.async {
+                        self.level.text = String(format:"%.2f",level)
+                        // etc
+                    }
+                })
+                
+            } else {
+                print("failed")
+            }
+            //                        }
+        }catch {
+            print(error.localizedDescription)
+            
+        }
         
     }
     
