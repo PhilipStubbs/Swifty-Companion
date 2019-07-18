@@ -25,20 +25,45 @@ class SecondViewController: UIViewController {
         userName.text = detailedStudent.name
         userEmail.text = detailedStudent.email
         campus.text = detailedStudent.campus
-//        setProfilePicture()
         profilePicture.image = detailedStudent.profilePicture
+        getUserInfo()
     }
     
-
-    func setProfilePicture() {
-        let url = URL(string: "https://cdn.intra.42.fr/users/medium_"+detailedStudent.name+".png")!
-        do {
-            let data = try Data(contentsOf: url)
-            profilePicture.image = UIImage(data: data)
-        } catch {
-            profilePicture.image = UIImage(named: "default")
+    func getUserInfo(){
+        var jsonResponse = ""
+        
+        let url = URL(string: "https://api.intra.42.fr/v2/users/"+detailedStudent.name+"/cursus_users")!
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                print("error: \(error)")
+            } else {
+                if let response = response as? HTTPURLResponse {
+                    print("statusCode: \(response.statusCode)")
+                }
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    jsonResponse = dataString
+                    print(jsonResponse)
+//                    print("data: \(dataString)")
+                }
+            }
         }
+        task.resume()
+        
     }
+    
+    func getAuthKey(){
+        
+    }
+
+//    func setProfilePicture() {
+//        let url = URL(string: "https://cdn.intra.42.fr/users/medium_"+detailedStudent.name+".png")!
+//        do {
+//            let data = try Data(contentsOf: url)
+//            profilePicture.image = UIImage(data: data)
+//        } catch {
+//            profilePicture.image = UIImage(named: "default")
+//        }
+//    }
 
     
     @IBAction func backButton(_ sender: Any) {
