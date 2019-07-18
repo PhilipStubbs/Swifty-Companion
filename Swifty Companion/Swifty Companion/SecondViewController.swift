@@ -25,8 +25,8 @@ class SecondViewController: UIViewController {
         userName.text = detailedStudent.name
         userEmail.text = detailedStudent.email
         campus.text = detailedStudent.campus
-        setProfilePicture()
-       
+//        setProfilePicture()
+        profilePicture.image = detailedStudent.profilePicture
     }
     
 
@@ -41,7 +41,10 @@ class SecondViewController: UIViewController {
     }
 
     
-  
+    @IBAction func backButton(_ sender: Any) {
+        performSegue(withIdentifier: "displayAllUsers", sender: self)
+    }
+    
 }
 
 

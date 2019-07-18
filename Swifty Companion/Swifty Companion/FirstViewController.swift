@@ -8,20 +8,25 @@
 
 import UIKit
 
+
+
 class FirstViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
  
-    var studentArray = [Student]()
+    static var studentArray = [Student]()
     var currentStudentArray = [Student]()
     var selectedStudent: Student = Student(name:"", campus:"",image: UIImage(named: "default")!)
-    var currentDetailedStudent = DetailedStudent(name:"n", campus:"c",profilePicture: UIImage(named: "default")!);
+    var currentDetailedStudent = DetailedStudent(name:"n", campus:"c", profilePicture: UIImage(named: "default")!);
     let file = "students.txt"
     
     @IBOutlet var table: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpStudents()
+        if (FirstViewController.studentArray.count < 100){
+            setUpStudents()
+        }
         setUpSearchBar()
+        currentStudentArray = FirstViewController.studentArray
     }
     
     private func setUpStudents() {
@@ -30,12 +35,25 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
             let myStrings = (data?.components(separatedBy: .newlines))!
             
             for name in myStrings {
-                studentArray.append(Student(name:name.lowercased(), campus:"WeThinkCode_", image: UIImage(named: "default")!))
+                var userImage = UIImage(named: "default")
+                let pngUrl = URL(string: "https://cdn.intra.42.fr/users/medium_"+name+".png")!
+                let jpgUrl = URL(string: "https://cdn.intra.42.fr/users/medium_"+name+".jpg")!
+                do {
+                    let data = try Data(contentsOf: pngUrl)
+                    userImage = UIImage(data: data)
+                } catch {
+                    do {
+                        let data = try Data(contentsOf: jpgUrl)
+                        userImage = UIImage(data: data)
+                    } catch {
+                        // NO OP
+                    }
+                }
+                FirstViewController.studentArray.append(Student(name:name.lowercased(), campus:"WeThinkCode_", image: userImage!))
             }
         } else {
             print("Students Not Found")
         }
-        currentStudentArray = studentArray
     }
     
     private func setUpSearchBar(){
@@ -71,13 +89,8 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         cell.name.text = currentStudentArray[indexPath.row].name
         cell.campus.text = currentStudentArray[indexPath.row].campus
-        let url = URL(string: "https://cdn.intra.42.fr/users/medium_"+currentStudentArray[indexPath.row].name+".png")!
-        do {
-            let data = try Data(contentsOf: url)
-            cell.intraProfilePicture.image = UIImage(data: data)
-        } catch {
-            cell.intraProfilePicture.image = UIImage(named: "default")
-        }
+        cell.intraProfilePicture.image = currentStudentArray[indexPath.row].image
+        
    
         return cell
     }
@@ -90,12 +103,12 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         guard !searchText.isEmpty else {
-            currentStudentArray = studentArray
+            currentStudentArray = FirstViewController.studentArray
             table.reloadData()
             return
         }
         
-        currentStudentArray = studentArray.filter({ student -> Bool in
+        currentStudentArray = FirstViewController.studentArray.filter({ student -> Bool in
             guard let text = searchBar.text else {return false}
             return student.name.contains(text.lowercased())
         })
