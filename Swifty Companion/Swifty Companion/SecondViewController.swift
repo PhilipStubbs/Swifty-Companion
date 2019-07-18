@@ -47,7 +47,7 @@ class SecondViewController: UIViewController {
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { (rawData, response, error) in
             if let error = error {
                 print("error: \(error)")
             } else {
@@ -59,24 +59,59 @@ class SecondViewController: UIViewController {
                         self.getUserInfo()
                     }
                 }
-                if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    jsonResponse = dataString
-                    print(jsonResponse)
+                if let data = rawData, let dataString = String(data: data, encoding: .utf8) {
+//                    jsonResponse = dataString
+//                    print(jsonResponse)
+//                    self.setUserInfo(data: dataString)
 //                    print("data: \(dataString)")
+                     print(dataString)
+                    
+                    do{
+                        if let json = dataString.data(using: String.Encoding.utf8){
+                            if let jsonData = try JSONSerialization.jsonObject(with: json, options: .allowFragments) as? [String:AnyObject]{
+                                print(jsonData["level"] as! String)
+                                self.level.text = jsonData["level"] as! String
+                                
+                            }
+                        }
+                    }catch {
+                        print(error.localizedDescription)
+                        
+                    }
                 }
+          
             }
         }
         task.resume()
         
     }
     
- 
+    func setUserInfo(data: Data){
+        print("inside setUser")
+        
+        let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+//        print(json!["level"])
+//        DispatchQueue.global().async(execute: {
+//            DispatchQueue.main.async {
+//                self.level.text = json!["level"]
+//                // etc
+//            }
+//        })
+//        do {
+//            if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+//
+        
+//            } else {
+//                print("Json not created")
+//            }
+//        } catch let error {
+//            print(error.localizedDescription)
+//        }
+        
+    }
     
     func getNewAuthKey() {
-        var jsonResponse = ""
-//
         let url = URL(string: "https://api.intra.42.fr/oauth/token")!
-////
         let parameters = [
             "grant_type":"client_credentials",
             "client_id": "2395c8f300a32a81e07519353dee66e3e719ba6aa3d176541e6fe1408a4fa83d" ,
@@ -142,7 +177,7 @@ class SecondViewController: UIViewController {
         do {
             let text = try String(contentsOf: SecondViewController.fileURL, encoding: .utf8)
             authKey = text
-            print("Read back text: \(authKey)")
+            print("Bearer Token Found: \(authKey)")
         }
         catch {
             print("failed with error: \(error)")
