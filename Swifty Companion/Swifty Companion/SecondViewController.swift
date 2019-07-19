@@ -9,7 +9,8 @@
 import UIKit
 
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITableViewDataSource {
+    
     
    static let authFileName = "Swifty-Companion-Auth"
    static let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -41,6 +42,21 @@ class SecondViewController: UIViewController {
     }
     
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return itemCells.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserInfoCell") as? UserInfoCell else {
+            return UITableViewCell()
+        }
+        cell.itemName.text = itemCells[indexPath.row].name
+        cell.mark.text = itemCells[indexPath.row].mark
+        cell.progress.progress = Float(itemCells[indexPath.row].mark) as! Float
+        return cell
+    }
+    
+    
     
     
     
@@ -52,7 +68,7 @@ class SecondViewController: UIViewController {
             skillSize = skills!.count
     
             for i in 0..<skillSize {
-                itemCells.append(UserInfo(mark: String(describing: skills?[i]["level"] ?? 0.00) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, type: 0))
+                itemCells.append(UserInfo(mark: String(describing: skills?[i]["level"] ?? 0.00) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, type: "Skill"))
             }
 
         } else {
@@ -63,17 +79,9 @@ class SecondViewController: UIViewController {
             for i in 0..<projects_users.count{
                 var wholeProjects = projects_users[i] as? [String:Any]
                 var project = wholeProjects!["project"] as? [String:Any]
-                itemCells.append(UserInfo(mark: String(describing: wholeProjects!["final_mark"] ?? 0), name: project!["name"] as! String, slug: project!["slug"] as! String , type: 1))
+                itemCells.append(UserInfo(mark: String(describing: wholeProjects!["final_mark"] ?? 0), name: project!["name"] as! String, slug: project!["slug"] as! String , type: "Project"))
                 
             }
-            
-//            var skills = cursus!["skills"] as? [Dictionary<String,Any>]
-//            skillSize = skills!.count
-            
-//            for i in 0..<skillSize {
-//                itemCells.append(UserInfo(mark: String(describing: skills?[i]["level"] ?? 0.00) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, type: 0))
-//            }
-            
             // WTC data.. most of the time.
             print()
         } else {
