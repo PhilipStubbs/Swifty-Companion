@@ -65,25 +65,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         return currentStudentArray.count
     }
     
-    // get selected Student
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (!(selectedStudent === currentStudentArray[indexPath.row]))  {
-            selectedStudent = currentStudentArray[indexPath.row]
-            print(currentStudentArray[indexPath.row].name)
 
-            self.currentDetailedStudent = DetailedStudent(name: selectedStudent.name, campus: selectedStudent.campus, profilePicture: selectedStudent.image)
-
-            performSegue(withIdentifier: "displayDetailedUser", sender: self)
-            
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var vc = segue.destination as! SecondViewController
-        vc.detailedStudent = currentDetailedStudent
-    }
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? TableCell else {
             return UITableViewCell()
@@ -96,10 +78,26 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
-    
+    // get selected Student
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (!(selectedStudent === currentStudentArray[indexPath.row]))  {
+            selectedStudent = currentStudentArray[indexPath.row]
+            print(currentStudentArray[indexPath.row].name)
+            
+            self.currentDetailedStudent = DetailedStudent(name: selectedStudent.name, campus: selectedStudent.campus, profilePicture: selectedStudent.image)
+            
+            performSegue(withIdentifier: "displayDetailedUser", sender: self)
+            
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var vc = segue.destination as! SecondViewController
+        vc.detailedStudent = currentDetailedStudent
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swifty Companion/SecondViewController.swift"
-            timestampString = "585225858.070762"
+            timestampString = "585227739.122753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "getUserInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swifty Companion/SecondViewController.swift"
-            timestampString = "585225858.07129"
+            timestampString = "585227739.123145"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "getUserInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,13 +42,245 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swifty Companion/SecondViewController.swift"
-            timestampString = "585225858.071561"
+            timestampString = "585227739.1236041"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "getUserInfo()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swifty Companion/SecondViewController.swift"
+            timestampString = "585227739.124006"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swifty Companion/UserInfoCell.swift"
+            timestampString = "585227811.3733881"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "UserInfoCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.itemName.getter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227813.250646"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.itemName.setter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227813.2521451"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.itemName.modify : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227813.25351"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.itemName.modify : Swift.Optional&lt;__C.UILabel&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227813.2549"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; Swifty_Companion.UserInfoCell"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227813.256367"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "217">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Swifty_Companion.UserInfoCell&gt;"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227813.257805"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "122">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swifty Companion/UserInfoCell.swift"
+            timestampString = "585227862.920866"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "UserInfoCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.mark.getter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227863.725859"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.mark.setter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227863.727222"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.mark.modify : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227863.728538"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.mark.modify : Swift.Optional&lt;__C.UILabel&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227863.729831"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; Swifty_Companion.UserInfoCell"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227863.731009"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "302">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swifty_Companion.UserInfoCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Swifty_Companion.UserInfoCell&gt;"
+                  moduleName = "Swifty Companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///goinfre/pstubbs/Documents/Swifty-Companion/Swifty%20Companion/Swifty%20Companion/UserInfoCell.swift"
+                  timestampString = "585227863.732174"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "201">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -9,7 +9,7 @@
 import UIKit
 
 
-class SecondViewController: UIViewController, UITableViewDataSource {
+class SecondViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     
    static let authFileName = "Swifty-Companion-Auth"
@@ -39,20 +39,26 @@ class SecondViewController: UIViewController, UITableViewDataSource {
 
         findAuthKey()
         getUserInfo()
+        
+
     }
     
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(itemCells.count)
        return itemCells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserInfoCell") as? UserInfoCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as? UserInfoCell else {
+            print("ERORR")
             return UITableViewCell()
         }
+        print("it works fine")
         cell.itemName.text = itemCells[indexPath.row].name
         cell.mark.text = itemCells[indexPath.row].mark
-        cell.progress.progress = Float(itemCells[indexPath.row].mark) as! Float
+//        cell.progress.progress = Float(itemCells[indexPath.row].mark) as! Float
         return cell
     }
     
@@ -60,7 +66,7 @@ class SecondViewController: UIViewController, UITableViewDataSource {
     
     
     
-    func extractUserInfo(){
+    func extractUserInfo() {
         var skillSize:Int
         if var cursus_users = try self.jsonData!["cursus_users"] as? [Dictionary<String,Any>] {
             var cursus = cursus_users[0] as? [String:Any]
@@ -87,10 +93,11 @@ class SecondViewController: UIViewController, UITableViewDataSource {
         } else {
             print("projects_users failed")
         }
+        DispatchQueue.main.async { self.projectTable.reloadData() }
+//        for i in 0..<itemCells.count {
+//            print(itemCells[i].name + " ", itemCells[i].mark)
+//        }
         
-        for i in 0..<itemCells.count {
-            print(itemCells[i].name + " ", itemCells[i].mark)
-        }
     }
     
     
