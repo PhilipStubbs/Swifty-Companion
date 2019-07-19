@@ -55,10 +55,10 @@ class SecondViewController: UIViewController, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.itemName.text = itemCells[indexPath.row].slug
-//        print(itemCells[indexPath.row].mark)
-//        cell.mark.text = itemCells[indexPath.row].mark
-//        cell.progress.progress = Float(itemCells[indexPath.row].mark) as! Float
-//        cell.itemType.text = itemCells[indexPath.row].itemType
+        print(itemCells[indexPath.row].mark)
+        cell.mark.text = "0"
+        cell.progress.progress = Float(0)
+        cell.itemType.text = itemCells[indexPath.row].infoType
         return cell
     }
     
@@ -70,7 +70,7 @@ class SecondViewController: UIViewController, UITableViewDataSource {
             skillSize = skills!.count
     
             for i in 0..<skillSize {
-                itemCells.append(UserInfo(mark: String(describing: skills?[i]["level"] ?? 0.00) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, userType: "Skill"))
+                itemCells.append(UserInfo(mark: String(describing: skills?[i]["level"] ?? 0.00) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, infoType: "Skill"))
             }
 
         } else {
@@ -81,7 +81,7 @@ class SecondViewController: UIViewController, UITableViewDataSource {
             for i in 0..<projects_users.count{
                 var wholeProjects = projects_users[i] as? [String:Any]
                 var project = wholeProjects!["project"] as? [String:Any]
-                itemCells.append(UserInfo(mark: String(describing: wholeProjects!["final_mark"] ?? 0), name: project!["name"] as! String, slug: project!["slug"] as! String , userType: "Project"))
+                itemCells.append(UserInfo(mark: String(describing: wholeProjects!["final_mark"] ?? 0), name: project!["name"] as! String, slug: project!["slug"] as! String , infoType: "Project"))
                 
             }
             // WTC data.. most of the time.
