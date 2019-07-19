@@ -18,27 +18,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="tfY-Lt-nSD">
+                                <rect key="frame" x="0.0" y="-47" width="414" height="943"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swifty Companion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSU-1n-WO0">
-                                <rect key="frame" x="0.0" y="504" width="414" height="37"/>
+                                <rect key="frame" x="0.0" y="404" width="414" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pstubbs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hC-Cl-0I6">
-                                <rect key="frame" x="0.0" y="641" width="414" height="21"/>
+                                <rect key="frame" x="0.0" y="541" width="414" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.32781798050140065" green="0.52738007348589067" blue="0.75979598445595853" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4hC-Cl-0I6" secondAttribute="bottom" constant="300" id="0Yw-H2-cnr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4hC-Cl-0I6" secondAttribute="trailing" id="22q-XA-k0M"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CSU-1n-WO0" secondAttribute="trailing" id="2iY-Jv-aVX"/>
                             <constraint firstItem="CSU-1n-WO0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5tA-P3-EZP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4hC-Cl-0I6" secondAttribute="bottom" constant="200" id="QR4-rk-96h"/>
+                            <constraint firstItem="tfY-Lt-nSD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Hxu-e4-xP1"/>
                             <constraint firstItem="4hC-Cl-0I6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cZ9-cX-ty5"/>
+                            <constraint firstItem="tfY-Lt-nSD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dW1-yh-CBj"/>
                             <constraint firstItem="4hC-Cl-0I6" firstAttribute="top" secondItem="CSU-1n-WO0" secondAttribute="bottom" constant="100" id="rau-bl-Qw3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tfY-Lt-nSD" secondAttribute="trailing" id="t6F-JT-PcO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -48,4 +53,7 @@
             <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="2000" height="1300"/>
+    </resources>
 </document>

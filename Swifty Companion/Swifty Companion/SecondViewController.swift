@@ -17,6 +17,7 @@ class SecondViewController: UIViewController {
     
     var detailedStudent: DetailedStudent = DetailedStudent();
     var authKey: String = ""
+    var jsonData: [String: Any]?
     
     @IBOutlet var profilePicture: UIImageView!
     @IBOutlet var userName: UILabel!
@@ -73,6 +74,7 @@ class SecondViewController: UIViewController {
         do{
             //                        if let json = dataString.data(using: String.Encoding.utf8){
             if let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
+                self.jsonData = jsonData
 //                print(jsonData)
                 var level = 0.0;
                 var begin_at = "";

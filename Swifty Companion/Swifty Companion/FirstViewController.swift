@@ -22,6 +22,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
+
         if (FirstViewController.studentArray.count < 100){
             setUpStudents()
         }
