@@ -28,6 +28,7 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         userName.text = detailedStudent.name
         userEmail.text = detailedStudent.email
         campus.text = detailedStudent.campus
@@ -42,7 +43,7 @@ class SecondViewController: UIViewController {
     func getUserInfo(){
         var jsonResponse = ""
         
-        let url = URL(string: "https://api.intra.42.fr/v2/users/"+detailedStudent.name+"/cursus_users")!
+        let url = URL(string: "https://api.intra.42.fr/v2/users/"+detailedStudent.name)!
         let token = authKey
         var request = URLRequest(url:url)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -61,16 +62,6 @@ class SecondViewController: UIViewController {
                     }
                 }
                 self.setUserInfo(data: rawData!)
-//                if let data = rawData, let dataString = String(data: data, encoding: .utf8) {
-////                    jsonResponse = dataString
-////                    print(jsonResponse)
-////                    self.setUserInfo(data: dataString)
-////                    print("data: \(dataString)")
-//                     print(dataString)
-//                }
-                
-
-//                }
           
             }
         }
@@ -81,24 +72,28 @@ class SecondViewController: UIViewController {
     func setUserInfo(data: Data){
         do{
             //                        if let json = dataString.data(using: String.Encoding.utf8){
-            if let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [Dictionary<String,Any>] {
-                print(jsonData)
+            if let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
+//                print(jsonData)
                 var level = 0.0;
                 var begin_at = "";
-                if var wtc = try jsonData[0] as? [String: Any] {
+                
+                if var wtc = try jsonData["cursus_users"] as? [Dictionary<String,Any>] {
                     // WTC data.. most of the time.
-                    begin_at = (wtc["begin_at"] as? String)!
-                    level = wtc["level"] as? Double ?? 0.0
+                    print(wtc)
+                    begin_at = (wtc[0]["begin_at"] as? String)!
+                    level = wtc[0]["level"] as? Double ?? 0.0
+                } else {
+                    print("cursus_users failed")
                 }
-                if (jsonData.count > 1) {
-                    if var bootcamp = try jsonData[1] as? [String: Any] {
-                        // BOOTCAMP data.. most of the time
-                        print(bootcamp["level"])
-                        if (level == 0.0){
-                            level = bootcamp["level"] as? Double ?? 0.0
-                        }
-                    }
-                }
+//                if (jsonData.count > 1) {
+//                    if var bootcamp = try jsonData[1] as? [String: Any] {
+//                        // BOOTCAMP data.. most of the time
+//                        print(bootcamp["level"])
+//                        if (level == 0.0){
+//                            level = bootcamp["level"] as? Double ?? 0.0
+//                        }
+//                    }
+//                }
 
                 DispatchQueue.global().async(execute: {
                     DispatchQueue.main.async {
