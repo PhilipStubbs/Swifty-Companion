@@ -18,6 +18,7 @@ class SecondViewController: UIViewController {
     var detailedStudent: DetailedStudent = DetailedStudent();
     var authKey: String = ""
     var jsonData: [String: Any]?
+    var itemCells = [UserInfo]()
     
     @IBOutlet var profilePicture: UIImageView!
     @IBOutlet var userName: UILabel!
@@ -39,11 +40,67 @@ class SecondViewController: UIViewController {
         getUserInfo()
     }
     
+    
+    
+    
+    
+    func extractUserInfo(){
+        var skillSize:Int
+        if var cursus_users = try self.jsonData!["cursus_users"] as? [Dictionary<String,Any>] {
+            var cursus = cursus_users[0] as? [String:Any]
+            var skills = cursus!["skills"] as? [Dictionary<String,Any>]
+            skillSize = skills!.count
+    
+            for i in 0..<skillSize {
+                itemCells.append(UserInfo(mark: String(describing: skills?[i]["level"] ?? 0.00) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, type: 0))
+            }
+
+        } else {
+            print("cursus_users failed")
+        }
+        
+        if var projects_users = try self.jsonData!["projects_users"] as? [Dictionary<String,Any>] {
+            for i in 0..<projects_users.count{
+                var wholeProjects = projects_users[i] as? [String:Any]
+                var project = wholeProjects!["project"] as? [String:Any]
+                itemCells.append(UserInfo(mark: String(describing: wholeProjects!["final_mark"] ?? 0), name: project!["name"] as! String, slug: project!["slug"] as! String , type: 1))
+                
+            }
+            
+//            var skills = cursus!["skills"] as? [Dictionary<String,Any>]
+//            skillSize = skills!.count
+            
+//            for i in 0..<skillSize {
+//                itemCells.append(UserInfo(mark: String(describing: skills?[i]["level"] ?? 0.00) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, type: 0))
+//            }
+            
+            // WTC data.. most of the time.
+            print()
+        } else {
+            print("projects_users failed")
+        }
+        
+        for i in 0..<itemCells.count {
+            print(itemCells[i].name + " ", itemCells[i].mark)
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     
     func getUserInfo(){
-        var jsonResponse = ""
-        
         let url = URL(string: "https://api.intra.42.fr/v2/users/"+detailedStudent.name)!
         let token = authKey
         var request = URLRequest(url:url)
@@ -75,27 +132,18 @@ class SecondViewController: UIViewController {
             //                        if let json = dataString.data(using: String.Encoding.utf8){
             if let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
                 self.jsonData = jsonData
-//                print(jsonData)
                 var level = 0.0;
                 var begin_at = "";
                 
                 if var wtc = try jsonData["cursus_users"] as? [Dictionary<String,Any>] {
                     // WTC data.. most of the time.
                     print(wtc)
+                    print("")
                     begin_at = (wtc[0]["begin_at"] as? String)!
                     level = wtc[0]["level"] as? Double ?? 0.0
                 } else {
                     print("cursus_users failed")
                 }
-//                if (jsonData.count > 1) {
-//                    if var bootcamp = try jsonData[1] as? [String: Any] {
-//                        // BOOTCAMP data.. most of the time
-//                        print(bootcamp["level"])
-//                        if (level == 0.0){
-//                            level = bootcamp["level"] as? Double ?? 0.0
-//                        }
-//                    }
-//                }
 
                 DispatchQueue.global().async(execute: {
                     DispatchQueue.main.async {
@@ -103,6 +151,7 @@ class SecondViewController: UIViewController {
                         self.signupTime.text = begin_at
                     }
                 })
+                extractUserInfo()
                 
             } else {
                 print("failed")

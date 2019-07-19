@@ -9,11 +9,15 @@
 import UIKit
 
 class UserInfo {
-    let mark
-    let name
-    let slug
+    let mark:String
+    let name:String
+    let slug:String
+    let type: Int
     
-    init(mark: Int, name: String, slug: String) {
-        <#statements#>
+    init(mark: String, name: String, slug: String, type:Int) {
+        self.mark = mark
+        self.name = name
+        self.slug = slug
+        self.type = type
     }
 }
