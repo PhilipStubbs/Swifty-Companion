@@ -10,23 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swifty Companion/SecondViewController.swift"
-            timestampString = "585227739.122753"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "getUserInfo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Swifty Companion/SecondViewController.swift"
-            timestampString = "585227739.123145"
+            timestampString = "585230290.405468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
@@ -42,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swifty Companion/SecondViewController.swift"
-            timestampString = "585227739.1236041"
+            timestampString = "585230290.405594"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "getUserInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swifty Companion/SecondViewController.swift"
-            timestampString = "585227739.124006"
+            timestampString = "585230290.405674"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "getUserInfo()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

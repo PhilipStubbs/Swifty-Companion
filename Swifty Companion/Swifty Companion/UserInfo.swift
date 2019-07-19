@@ -12,12 +12,12 @@ class UserInfo {
     let mark:String
     let name:String
     let slug:String
-    let type:String
+    let userType:String
     
-    init(mark: String, name: String, slug: String, type:String) {
+    init(mark: String, name: String, slug: String, userType:String) {
         self.mark = mark
         self.name = name
         self.slug = slug
-        self.type = type
+        self.userType = userType
     }
 }

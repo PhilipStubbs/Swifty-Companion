@@ -9,8 +9,7 @@
 import UIKit
 
 
-class SecondViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
-    
+class SecondViewController: UIViewController, UITableViewDataSource {
     
    static let authFileName = "Swifty-Companion-Auth"
    static let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -26,8 +25,11 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet var userEmail: UILabel!
     @IBOutlet var campus: UILabel!
     @IBOutlet var level: UILabel!
-    @IBOutlet var projectTable: UITableView!
     @IBOutlet var signupTime: UILabel!
+    
+    @IBOutlet var table: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,28 +45,22 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
 
     }
     
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(itemCells.count)
-       return itemCells.count
+        return itemCells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as? UserInfoCell else {
-            print("ERORR")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? ItemCell else {
             return UITableViewCell()
         }
-        print("it works fine")
-        cell.itemName.text = itemCells[indexPath.row].name
-        cell.mark.text = itemCells[indexPath.row].mark
+        cell.itemName.text = itemCells[indexPath.row].slug
+//        print(itemCells[indexPath.row].mark)
+//        cell.mark.text = itemCells[indexPath.row].mark
 //        cell.progress.progress = Float(itemCells[indexPath.row].mark) as! Float
+//        cell.itemType.text = itemCells[indexPath.row].itemType
         return cell
     }
-    
-    
-    
-    
     
     func extractUserInfo() {
         var skillSize:Int
@@ -74,7 +70,7 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
             skillSize = skills!.count
     
             for i in 0..<skillSize {
-                itemCells.append(UserInfo(mark: String(describing: skills?[i]["level"] ?? 0.00) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, type: "Skill"))
+                itemCells.append(UserInfo(mark: String(describing: skills?[i]["level"] ?? 0.00) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, userType: "Skill"))
             }
 
         } else {
@@ -85,7 +81,7 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
             for i in 0..<projects_users.count{
                 var wholeProjects = projects_users[i] as? [String:Any]
                 var project = wholeProjects!["project"] as? [String:Any]
-                itemCells.append(UserInfo(mark: String(describing: wholeProjects!["final_mark"] ?? 0), name: project!["name"] as! String, slug: project!["slug"] as! String , type: "Project"))
+                itemCells.append(UserInfo(mark: String(describing: wholeProjects!["final_mark"] ?? 0), name: project!["name"] as! String, slug: project!["slug"] as! String , userType: "Project"))
                 
             }
             // WTC data.. most of the time.
@@ -93,7 +89,12 @@ class SecondViewController: UIViewController, UITableViewDataSource, UITableView
         } else {
             print("projects_users failed")
         }
-        DispatchQueue.main.async { self.projectTable.reloadData() }
+        
+        
+        DispatchQueue.main.async { self.table.reloadData() }
+        
+        
+        
 //        for i in 0..<itemCells.count {
 //            print(itemCells[i].name + " ", itemCells[i].mark)
 //        }
