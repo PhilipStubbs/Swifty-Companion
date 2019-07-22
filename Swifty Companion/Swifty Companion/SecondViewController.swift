@@ -34,10 +34,10 @@ class SecondViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.table.rowHeight = 100
-        userName.text = detailedStudent.name
+        
         userEmail.text = detailedStudent.email
         campus.text = detailedStudent.campus
-        profilePicture.image = detailedStudent.profilePicture
+//        profilePicture.image = detailedStudent.profilePicture
 
         findAuthKey()
         getUserInfo()
@@ -55,7 +55,6 @@ class SecondViewController: UIViewController, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.itemName.text = itemCells[indexPath.row].slug
-        print(itemCells[indexPath.row].mark)
         cell.mark.text = itemCells[indexPath.row].infoType == "Skill" ? String(format:"%.2f",itemCells[indexPath.row].rawMark) : String(format:"%.2f",itemCells[indexPath.row].rawMark) + "%"
         let progressMark = itemCells[indexPath.row].infoType == "Skill" ?  Float(itemCells[indexPath.row].rawMark) / 10 : Float(itemCells[indexPath.row].rawMark) / 100
         cell.progress.progress = progressMark
@@ -74,16 +73,18 @@ class SecondViewController: UIViewController, UITableViewDataSource {
     
     func extractUserInfo() {
         var skillSize:Int
+        print(jsonData)
         if var cursus_users = try self.jsonData!["cursus_users"] as? [Dictionary<String,Any>] {
             var cursus = cursus_users[0] as? [String:Any]
             var skills = cursus!["skills"] as? [Dictionary<String,Any>]
             skillSize = skills!.count
-    
+            print("HERE")
+            print(cursus_users)
             for i in 0..<skillSize {
                 var mark:Double = skills?[i]["level"] as? Double ?? 0.00
                 itemCells.append(UserInfo(mark: String(describing: mark) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, infoType: "Skill", rawMark: mark))
             }
-
+            
         } else {
             print("cursus_users failed")
         }
@@ -99,20 +100,12 @@ class SecondViewController: UIViewController, UITableViewDataSource {
                 
             }
             // WTC data.. most of the time.
-            print()
         } else {
             print("projects_users failed")
         }
         
         
         DispatchQueue.main.async { self.table.reloadData() }
-        
-        
-        
-//        for i in 0..<itemCells.count {
-//            print(itemCells[i].name + " ", itemCells[i].mark)
-//        }
-        
     }
     
     
@@ -135,6 +128,9 @@ class SecondViewController: UIViewController, UITableViewDataSource {
                         self.findAuthKey()
                         self.getUserInfo()
                     }
+                    if (response.statusCode == 404){
+                        self.backButton(self)
+                    }
                 }
                 self.setUserInfo(data: rawData!)
           
@@ -154,16 +150,27 @@ class SecondViewController: UIViewController, UITableViewDataSource {
                 
                 if var wtc = try jsonData["cursus_users"] as? [Dictionary<String,Any>] {
                     // WTC data.. most of the time.
-                    print(wtc)
-                    print("")
                     begin_at = (wtc[0]["begin_at"] as? String)!
                     level = wtc[0]["level"] as? Double ?? 0.0
+
                 } else {
                     print("cursus_users failed")
                 }
-
+                
+                let url = try jsonData["image_url"] as! String
+                let data = try Data(contentsOf: URL(string:url)!)
+                let userImage = UIImage(data: data)
                 DispatchQueue.global().async(execute: {
                     DispatchQueue.main.async {
+                        self.profilePicture.image = userImage
+                    }
+                })
+                
+                let login = try jsonData["login"] as! String
+                DispatchQueue.global().async(execute: {
+                    DispatchQueue.main.async {
+//                        self.profilePicture.image = userImage
+                        self.userName.text = login
                         self.level.text = String(format:"%.2f",level).replacingOccurrences(of: ".", with: " - ", options: .literal, range: nil) + "%"
                         self.signupTime.text = begin_at
                     }

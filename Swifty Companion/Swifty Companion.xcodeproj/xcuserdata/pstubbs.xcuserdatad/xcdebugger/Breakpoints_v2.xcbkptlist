@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swifty Companion/SecondViewController.swift"
-            timestampString = "585475087.275022"
+            timestampString = "585477485.639143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "getUserInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swifty Companion/SecondViewController.swift"
-            timestampString = "585475087.275363"
+            timestampString = "585477485.639528"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "getUserInfo()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Swifty Companion/SecondViewController.swift"
-            timestampString = "585475087.275609"
+            timestampString = "585477485.639783"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "getUserInfo()"
             landmarkType = "7">
          </BreakpointContent>
