@@ -38,11 +38,6 @@ class SecondViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.table.rowHeight = 100
-        
-        userEmail.text = detailedStudent.email
-        campus.text = detailedStudent.campus
-//        profilePicture.image = detailedStudent.profilePicture
-
         findAuthKey()
         getUserInfo()
         
@@ -169,20 +164,20 @@ class SecondViewController: UIViewController, UITableViewDataSource {
                         let url = try jsonData["image_url"] as! String
                         let data = try Data(contentsOf: URL(string:url)!)
                         let userImage = UIImage(data: data)
-    //                    DispatchQueue.global().async(execute: {
-    //                        DispatchQueue.main.async {
-    //
-    //                        }
-    //                    })
                     
                     let login = try jsonData["login"] as! String
                     let displayName = try jsonData["displayname"] as! String
                     let points = try jsonData["correction_point"] as! Int
+                    let campusLocationRaw = try jsonData["campus"]! as! [Dictionary<String,Any>]
+                    let campusLocation = try campusLocationRaw[0]["name"] as! String
+                    let emailAddress = try jsonData["email"] as! String
                     DispatchQueue.global().async(execute: {
                         DispatchQueue.main.async {
                             self.fullName.text = displayName
                             self.profilePicture.image = userImage
                             self.userName.text = login
+                            self.campus.text = campusLocation
+                            self.userEmail.text = emailAddress
                             self.points.text = "CP:"+String(format:"%d",points)
                             self.level.text = "Level:"+String(format:"%.2f",level).replacingOccurrences(of: ".", with: " - ", options: .literal, range: nil) + "%"
                             self.signupTime.text = String(begin_at.prefix(10))

@@ -93,7 +93,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        currentDetailedStudent = DetailedStudent(name: (searchBar.text?.lowercased())!, campus: "", profilePicture: UIImage(named: "default")!)
+        currentDetailedStudent = DetailedStudent(name: (searchBar.text?.lowercased())!, campus: "42", profilePicture: UIImage(named: "default")!)
         print(currentDetailedStudent.name)
         performSegue(withIdentifier: "displayDetailedUser", sender: self)
     }
