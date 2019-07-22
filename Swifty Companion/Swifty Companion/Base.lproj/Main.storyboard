@@ -188,10 +188,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p9B-K0-wlR">
-                                                    <rect key="frame" x="111" y="89" width="210" height="2"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </progressView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mark" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x62-sG-gkl">
                                                     <rect key="frame" x="20" y="52" width="374" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -200,13 +196,25 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="itemType" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BU2-jq-gXF">
-                                                    <rect key="frame" x="20" y="11" width="82" height="21"/>
+                                                    <rect key="frame" x="5" y="52" width="82" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p9B-K0-wlR">
+                                                    <rect key="frame" x="102" y="100.5" width="210" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="1ci-Xr-v0S"/>
+                                                        <constraint firstAttribute="width" constant="210" id="dQA-O1-1DK"/>
+                                                    </constraints>
+                                                </progressView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="p9B-K0-wlR" firstAttribute="leading" secondItem="ygr-Ca-hpd" secondAttribute="leading" constant="102" id="ab3-4f-ZbC"/>
+                                                <constraint firstAttribute="bottom" secondItem="p9B-K0-wlR" secondAttribute="bottom" constant="5" id="cy4-Me-YFj"/>
+                                                <constraint firstAttribute="trailing" secondItem="p9B-K0-wlR" secondAttribute="trailing" constant="102" id="zBA-HE-Xgw"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="itemName" destination="WYj-9M-RUc" id="iw6-Zm-p7f"/>

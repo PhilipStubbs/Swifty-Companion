@@ -10,14 +10,16 @@ import UIKit
 
 class UserInfo {
     let mark:String
+    let rawMark:Double
     let name:String
     let slug:String
     let infoType:String
     
-    init(mark: String, name: String, slug: String, infoType:String) {
+    init(mark: String, name: String, slug: String, infoType:String, rawMark: Double) {
         self.mark = mark
         self.name = name
         self.slug = slug
         self.infoType = infoType
+        self.rawMark = rawMark
     }
 }

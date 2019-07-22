@@ -33,7 +33,7 @@ class SecondViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.table.rowHeight = 100
         userName.text = detailedStudent.name
         userEmail.text = detailedStudent.email
         campus.text = detailedStudent.campus
@@ -56,10 +56,20 @@ class SecondViewController: UIViewController, UITableViewDataSource {
         }
         cell.itemName.text = itemCells[indexPath.row].slug
         print(itemCells[indexPath.row].mark)
-        cell.mark.text = "0"
-        cell.progress.progress = Float(0)
+        cell.mark.text = String(format:"%.2f",itemCells[indexPath.row].rawMark)
+        let progressMark = itemCells[indexPath.row].infoType == "Skill" ?  Float(itemCells[indexPath.row].rawMark) / 10 : Float(itemCells[indexPath.row].rawMark) / 100
+        cell.progress.progress = progressMark
         cell.itemType.text = itemCells[indexPath.row].infoType
+        
+//        cell.progress.layer.cornerRadius = 10
+//        cell.progress.clipsToBounds = true
+//        cell.progress.layer.sublayers![1].cornerRadius = 10
+//        cell.progress.subviews[1].clipsToBounds = true
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0;//Choose your custom row height
     }
     
     func extractUserInfo() {
@@ -70,7 +80,8 @@ class SecondViewController: UIViewController, UITableViewDataSource {
             skillSize = skills!.count
     
             for i in 0..<skillSize {
-                itemCells.append(UserInfo(mark: String(describing: skills?[i]["level"] ?? 0.00) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, infoType: "Skill"))
+                var mark:Double = skills?[i]["level"] as? Double ?? 0.00
+                itemCells.append(UserInfo(mark: String(describing: mark) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, infoType: "Skill", rawMark: mark))
             }
 
         } else {
@@ -79,9 +90,12 @@ class SecondViewController: UIViewController, UITableViewDataSource {
         
         if var projects_users = try self.jsonData!["projects_users"] as? [Dictionary<String,Any>] {
             for i in 0..<projects_users.count{
+                var mark:Double
                 var wholeProjects = projects_users[i] as? [String:Any]
                 var project = wholeProjects!["project"] as? [String:Any]
-                itemCells.append(UserInfo(mark: String(describing: wholeProjects!["final_mark"] ?? 0), name: project!["name"] as! String, slug: project!["slug"] as! String , infoType: "Project"))
+                mark = wholeProjects!["final_mark"] as? Double ?? 0.00
+             
+                itemCells.append(UserInfo(mark: String(describing: mark), name: project!["name"] as! String, slug: project!["slug"] as! String , infoType: "Project", rawMark: mark))
                 
             }
             // WTC data.. most of the time.
@@ -102,19 +116,6 @@ class SecondViewController: UIViewController, UITableViewDataSource {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     
     func getUserInfo(){
         let url = URL(string: "https://api.intra.42.fr/v2/users/"+detailedStudent.name)!
