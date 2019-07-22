@@ -19,6 +19,7 @@ class SecondViewController: UIViewController, UITableViewDataSource {
     var authKey: String = ""
     var jsonData: [String: Any]?
     var itemCells = [UserInfo]()
+    var statusCode: Int = 0;
     
     @IBOutlet var profilePicture: UIImageView!
     @IBOutlet var userName: UILabel!
@@ -129,9 +130,14 @@ class SecondViewController: UIViewController, UITableViewDataSource {
                         self.findAuthKey()
                         self.getUserInfo()
                     }
-                    if (response.statusCode == 404){
-                        self.backButton(self)
-                    }
+                    self.statusCode = response.statusCode
+//                    if (response.statusCode == 404){
+//                        DispatchQueue.global().async(execute: {
+//                            DispatchQueue.main.async {
+//                                self.backButton(self)
+//                            }
+//                        })
+//                    }
                 }
                 self.setUserInfo(data: rawData!)
           
@@ -144,48 +150,51 @@ class SecondViewController: UIViewController, UITableViewDataSource {
     func setUserInfo(data: Data){
         do{
             //                        if let json = dataString.data(using: String.Encoding.utf8){
-            if let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
-                self.jsonData = jsonData
-                var level = 0.0;
-                var begin_at = "";
-                
-                if var wtc = try jsonData["cursus_users"] as? [Dictionary<String,Any>] {
-                    // WTC data.. most of the time.
-                    begin_at = (wtc[0]["begin_at"] as? String)!
-                    level = wtc[0]["level"] as? Double ?? 0.0
+            if (self.statusCode == 200)
+            {
+                if let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
+                    self.jsonData = jsonData
+                    var level = 0.0;
+                    var begin_at = "";
+                    
+                    if var wtc = try jsonData["cursus_users"] as? [Dictionary<String,Any>] {
+                        // WTC data.. most of the time.
+                        begin_at = (wtc[0]["begin_at"] as? String)!
+                        level = wtc[0]["level"] as? Double ?? 0.0
 
+                    } else {
+                        print("cursus_users failed")
+                    }
+            
+                        let url = try jsonData["image_url"] as! String
+                        let data = try Data(contentsOf: URL(string:url)!)
+                        let userImage = UIImage(data: data)
+    //                    DispatchQueue.global().async(execute: {
+    //                        DispatchQueue.main.async {
+    //
+    //                        }
+    //                    })
+                    
+                    let login = try jsonData["login"] as! String
+                    let displayName = try jsonData["displayname"] as! String
+                    let points = try jsonData["correction_point"] as! Int
+                    DispatchQueue.global().async(execute: {
+                        DispatchQueue.main.async {
+                            self.fullName.text = displayName
+                            self.profilePicture.image = userImage
+                            self.userName.text = login
+                            self.points.text = "CP:"+String(format:"%d",points)
+                            self.level.text = "Level:"+String(format:"%.2f",level).replacingOccurrences(of: ".", with: " - ", options: .literal, range: nil) + "%"
+                            self.signupTime.text = String(begin_at.prefix(10))
+                        }
+                    })
+               
+                    extractUserInfo()
+                    
                 } else {
-                    print("cursus_users failed")
+                    print("failed")
                 }
-                
-                let url = try jsonData["image_url"] as! String
-                let data = try Data(contentsOf: URL(string:url)!)
-                let userImage = UIImage(data: data)
-                DispatchQueue.global().async(execute: {
-                    DispatchQueue.main.async {
-                        
-                    }
-                })
-                
-                let login = try jsonData["login"] as! String
-                let displayName = try jsonData["displayname"] as! String
-                let points = try jsonData["correction_point"] as! Int
-                DispatchQueue.global().async(execute: {
-                    DispatchQueue.main.async {
-                        self.fullName.text = displayName
-                        self.profilePicture.image = userImage
-                        self.userName.text = login
-                        self.points.text = "CP:"+String(format:"%d",points)
-                        self.level.text = "Level:"+String(format:"%.2f",level).replacingOccurrences(of: ".", with: " - ", options: .literal, range: nil) + "%"
-                        self.signupTime.text = String(begin_at.prefix(10))
-                    }
-                })
-                extractUserInfo()
-                
-            } else {
-                print("failed")
-            }
-            //                        }
+          }
         }catch {
             print(error.localizedDescription)
             

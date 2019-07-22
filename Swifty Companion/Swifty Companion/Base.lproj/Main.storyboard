@@ -21,12 +21,13 @@
                             <tableView clipsSubviews="YES" contentMode="center" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HuI-7K-fDj">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" text="" showsScopeBar="YES" id="OBL-Bz-8hG">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="search" showsCancelButton="YES" id="OBL-Bz-8hG">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <scopeButtonTitles>
                                         <string>Student</string>
+                                        <string>Title</string>
                                     </scopeButtonTitles>
                                     <connections>
                                         <outlet property="delegate" destination="9pv-A4-QxB" id="E5L-D0-Z6m"/>

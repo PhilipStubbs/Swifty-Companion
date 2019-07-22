@@ -22,7 +22,6 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         if (FirstViewController.studentArray.count < 100){
             setUpStudents()
         }
@@ -57,7 +56,9 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
+    
     private func setUpSearchBar(){
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = "Search"
         searchBar.delegate = self
     }
     
@@ -91,6 +92,12 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        currentDetailedStudent = DetailedStudent(name: (searchBar.text?.lowercased())!, campus: "", profilePicture: UIImage(named: "default")!)
+        print(currentDetailedStudent.name)
+        performSegue(withIdentifier: "displayDetailedUser", sender: self)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
@@ -99,6 +106,8 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         var vc = segue.destination as! SecondViewController
         vc.detailedStudent = currentDetailedStudent
     }
+    
+
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         guard !searchText.isEmpty else {
