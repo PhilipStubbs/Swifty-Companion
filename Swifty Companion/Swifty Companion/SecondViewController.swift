@@ -30,6 +30,9 @@ class SecondViewController: UIViewController, UITableViewDataSource {
     @IBOutlet var table: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     
+    @IBOutlet var fullName: UILabel!
+    @IBOutlet var points: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,8 +81,6 @@ class SecondViewController: UIViewController, UITableViewDataSource {
             var cursus = cursus_users[0] as? [String:Any]
             var skills = cursus!["skills"] as? [Dictionary<String,Any>]
             skillSize = skills!.count
-            print("HERE")
-            print(cursus_users)
             for i in 0..<skillSize {
                 var mark:Double = skills?[i]["level"] as? Double ?? 0.00
                 itemCells.append(UserInfo(mark: String(describing: mark) , name: skills![i]["name"] as! String, slug: skills![i]["name"] as! String, infoType: "Skill", rawMark: mark))
@@ -162,17 +163,21 @@ class SecondViewController: UIViewController, UITableViewDataSource {
                 let userImage = UIImage(data: data)
                 DispatchQueue.global().async(execute: {
                     DispatchQueue.main.async {
-                        self.profilePicture.image = userImage
+                        
                     }
                 })
                 
                 let login = try jsonData["login"] as! String
+                let displayName = try jsonData["displayname"] as! String
+                let points = try jsonData["correction_point"] as! Int
                 DispatchQueue.global().async(execute: {
                     DispatchQueue.main.async {
-//                        self.profilePicture.image = userImage
+                        self.fullName.text = displayName
+                        self.profilePicture.image = userImage
                         self.userName.text = login
-                        self.level.text = String(format:"%.2f",level).replacingOccurrences(of: ".", with: " - ", options: .literal, range: nil) + "%"
-                        self.signupTime.text = begin_at
+                        self.points.text = "CP:"+String(format:"%d",points)
+                        self.level.text = "Level:"+String(format:"%.2f",level).replacingOccurrences(of: ".", with: " - ", options: .literal, range: nil) + "%"
+                        self.signupTime.text = String(begin_at.prefix(10))
                     }
                 })
                 extractUserInfo()
