@@ -56,15 +56,15 @@ class SecondViewController: UIViewController, UITableViewDataSource {
         }
         cell.itemName.text = itemCells[indexPath.row].slug
         print(itemCells[indexPath.row].mark)
-        cell.mark.text = String(format:"%.2f",itemCells[indexPath.row].rawMark)
+        cell.mark.text = itemCells[indexPath.row].infoType == "Skill" ? String(format:"%.2f",itemCells[indexPath.row].rawMark) : String(format:"%.2f",itemCells[indexPath.row].rawMark) + "%"
         let progressMark = itemCells[indexPath.row].infoType == "Skill" ?  Float(itemCells[indexPath.row].rawMark) / 10 : Float(itemCells[indexPath.row].rawMark) / 100
         cell.progress.progress = progressMark
         cell.itemType.text = itemCells[indexPath.row].infoType
         
-//        cell.progress.layer.cornerRadius = 10
-//        cell.progress.clipsToBounds = true
-//        cell.progress.layer.sublayers![1].cornerRadius = 10
-//        cell.progress.subviews[1].clipsToBounds = true
+        cell.progress.layer.cornerRadius = 10
+        cell.progress.clipsToBounds = true
+        cell.progress.layer.sublayers![1].cornerRadius = 10
+        cell.progress.subviews[1].clipsToBounds = true
         return cell
     }
     
@@ -164,7 +164,7 @@ class SecondViewController: UIViewController, UITableViewDataSource {
 
                 DispatchQueue.global().async(execute: {
                     DispatchQueue.main.async {
-                        self.level.text = String(format:"%.2f",level)
+                        self.level.text = String(format:"%.2f",level).replacingOccurrences(of: ".", with: " - ", options: .literal, range: nil) + "%"
                         self.signupTime.text = begin_at
                     }
                 })
